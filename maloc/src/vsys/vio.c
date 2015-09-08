@@ -1311,6 +1311,44 @@ VPUBLIC void Vio_connectFree(Vio *thee)
     return;
 }
 
+
+/*
+ * ***************************************************************************
+ * Routine:  Vio_findNewLine
+ *
+ * Purpose:  Advance the pointer on the current buffer to the position of the
+ * 			 next new line character.
+ *
+ * Author:   Juan Bramdi
+ * ***************************************************************************
+ */
+VPUBLIC	int Vio_findNewLine(Vio *thee){
+
+	char *buf;
+	char newL = '\n';
+	int len;
+	int pos = asc_getpos((ASC*)thee->axdr);
+	int isNewLine = 0;
+
+	buf = thee->ioBuffer;
+	len = thee->ioBufferLen;
+
+
+	while(pos < len && isNewLine == 0){
+
+		if(memcmp(&buf[pos],&newL,sizeof(char)) == 0){
+			isNewLine = 1;
+			asc_setpos((ASC*)thee->axdr, pos);
+		}
+		else {
+			pos++;
+		}
+	}
+
+	return isNewLine;
+}
+
+
 /*
  * ***************************************************************************
  * Routine:  Vio_scanf
