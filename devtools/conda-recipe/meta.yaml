@@ -1,0 +1,34 @@
+{% set version = "1.5" %}
+
+package:
+  name: fetk
+  version: {{ version }}
+
+source:
+  path: ../../
+
+build:
+  number: 6
+
+requirements:
+  build:
+    - readline
+    - ncurses
+  run:
+    - readline
+    - ncurses
+
+test:
+  commands:
+    - GenerateMesh --help
+    - ImproveSurfMesh --help || [[ $? -eq 1 ]] || false
+    - malocbridge --help
+    - mcbridge --help
+    - mcsg --help
+    - MolecularMesh --help
+    - tilesg --help
+
+about:
+  home: http://fetk.org/
+  summary: The Finite Element ToolKit (FETK) is a collaboratively developed, evolving collection of adaptive finite element method (AFEM) software libraries and tools for solving coupled systems of nonlinear geometric partial differential equations (PDE).
+  license: LGPL
