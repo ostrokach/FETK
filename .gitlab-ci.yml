@@ -26,4 +26,4 @@ test:
 deploy:
   stage: deploy
   script:
-    - anaconda -t $ANACONDA_TOKEN upload conda-bld/linux-64/*.tar.bz2
+    - anaconda -t $ANACONDA_TOKEN upload conda-bld/linux-64/*.tar.bz2 -u kimlab
